@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskify Services</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #9985f3;
+      color: #222;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      background: #CFB7FC;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    nav h2 {
+      font-weight: 700
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #222;
+      font-weight: 500;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 70px 20px;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem
+    }
+
+    .hero p {
+      margin-top: 10px;
+      opacity: .9
+    }
+
+    /* ===== SECTION ===== */
+    section {
+      padding: 70px 20px
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      background: #E2D3EF
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .card {
+      background: #F4ECFE;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, .1);
+    }
+
+    /* ===== SERVICES ===== */
+    .services {
+      background: #9985f3;
+      color: white
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .service {
+      background: linear-gradient(135deg, #E2D3EF, #F4ECFE);
+      color: #222;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+      transition: .3s;
+    }
+
+    .service:hover {
+      transform: translateY(-10px)
+    }
+
+    .service span {
+      font-size: 3rem
+    }
+
+    /* ===== PROCESS ===== */
+    .process {
+      background: #E2D3EF
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+
+    /* ===== Contact Section ===== */
+    .contact {
+      padding: 80px 20px;
+      background-color: #E2D3EF;
+    }
+
+    .contact-title {
+      text-align: center;
+      margin-bottom: 40px;
+      background-color: #E2D3EF;
+    }
+
+    .contact-title h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .contact-title p {
+      color: #666;
+    }
+
+    /* ===== Contact Wrapper ===== */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      width: 100%;
+      margin: auto;
+      align-items: start;
+    }
+
+    /* ===== Contact Info ===== */
+    .contact-info .info-box {
+      display: flex;
+      align-items: center;
+      background: #F4ECFE;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon {
+      font-size: 1.8em;
+      margin-right: 15px;
+    }
+
+    .info-box h3 {
+      font-size: 1.1em;
+      color: #111;
+    }
+
+    .info-box p {
+      font-size: 0.95em;
+      color: #666;
+    }
+
+    /* ===== Contact Form ===== */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      background: #F4ECFE;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      border: 1px solid #E2D3EF;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgb(0, 0, 0);
+      outline: none;
+    }
+
+    /* From Uiverse.io by BHARGAVPATEL1244 */
+    button {
+      outline: none;
+      cursor: pointer;
+      border: none;
+      padding: 0.9rem 2rem;
+      margin: 0;
+      font-family: inherit;
+      font-size: inherit;
+      position: relative;
+      display: inline-block;
+      letter-spacing: 0.05rem;
+      font-weight: 700;
+      font-size: 17px;
+      border-radius: 500px;
+      overflow: hidden;
+      background: #9985f3;
+      color: ghostwhite;
+    }
+
+    button span {
+      position: relative;
+      z-index: 10;
+      transition: color 0.4s;
+    }
+
+    button:hover span {
+      color: black;
+    }
+
+    button::before,
+    button::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    button::before {
+      content: "";
+      background: #000;
+      width: 120%;
+      left: -10%;
+      transform: skew(30deg);
+      transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+    }
+
+    button:hover::before {
+      transform: translate3d(100%, 0, 0);
+    }
+
+    /* ===== FOOTER ===== */
+    /* footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    } */
+
+    /* ===== AI CHAT ===== */
+    .ai-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 25px;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #9985f3, #CFB7FC);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
+    }
+
+    .ai-box {
+      position: fixed;
+      right: 20px;
+      bottom: 105px;
+      width: 300px;
+      background: #F4ECFE;
+      border-radius: 15px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, .3);
+    }
+
+    .ai-head {
+      background: #9985f3;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .ai-body {
+      padding: 10px;
+      height: 200px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    .ai-input {
+      display: flex
+    }
+
+    .ai-input input {
+      flex: 1;
+      border: none;
+      padding: 10px
+    }
+
+    .ai-input button {
+      border-radius: 0
+    }
+
+    /* Navbar a */
+    nav a:hover {
+      color:#9985f3;
+      font-size: 1.075rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <h2>Taskify Services</h2>
+    <div>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Smart Services. Simple Solutions.</h1>
+    <p>AI • Websites • Academics • Data Support</p>
+  </div>
+
+  <section id="about" class="about">
+    <div class="container about-grid">
+      <div>
+        <h2>Who We Are</h2>
+        <p>Taskify Services helps students, startups, and businesses complete tasks efficiently using modern tools and
+          expertise.</p>
+      </div>
+      <div class="card">
+        <h3>Why Choose Us?</h3>
+        <p>✔ Fast delivery<br>✔ Affordable pricing<br>✔ Reliable support<br>✔ Quality-focused</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:40px">Our Services</h2>
+      <div class="service-grid">
+        <div class="service"><span>🤖</span>
+          <h3>AI Content</h3>
+          <p>SEO blogs, scripts, captions.</p>
+        </div>
+        <div class="service"><span>💻</span>
+          <h3>Web Development</h3>
+          <p>Modern responsive websites.</p>
+        </div>
+        <div class="service"><span>📚</span>
+          <h3>Homework Help</h3>
+          <p>Projects & assignments.</p>
+        </div>
+        <div class="service"><span>📋</span>
+          <h3>Data Entry</h3>
+          <p>Accurate & fast work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="process">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:40px">How We Work</h2>
+      <div class="process-grid">
+        <div class="card">📩 Receive Task</div>
+        <div class="card">🧠 Analyze</div>
+        <div class="card">⚙️ Execute</div>
+        <div class="card">✅ Deliver</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="container">
+      <div class="contact-title">
+        <h2>Get In Touch</h2>
+        <p>Feel free to reach out for collaborations, projects, or just to say hi 👋</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <div class="info-box">
+            <i class="icon">📍</i>
+            <div>
+              <h3>Address</h3>
+              <p>Haridwar, Uttrakhand, India</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <i class="icon">📞</i>
+            <div>
+              <h3>Phone</h3>
+              <p>+91 9719119994</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <i class="icon">📧</i>
+            <div>
+              <h3>Email</h3>
+              <p>vaibhavhalder@Gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <!-- Contact Form -->
+        <form class="contact-form" action="http://127.0.0.1:5000/contact" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" placeholder="Your Message" rows="5" required> </textarea>
+          <!-- From Uiverse.io by BHARGAVPATEL1244 -->
+          <button id="sendBtn">
+            <span>Send Message</span> </button>
+          <p id="successmessage" style="display: none; color:lavender; font-weight: bold;">Your message has been sent
+            successfully!</p>
+        </form>
+
+        <!-- <footer>
+          © 2026 Taskify Services • Built with 💜
+        </footer> -->
+
+        <div class="ai-btn" onclick="toggleAI()">🤖</div>
+        <div class="ai-box" id="aiBox">
+          <div class="ai-head">Taskify AI</div>
+          <div class="ai-body" id="aiBody">
+            <p><b>AI:</b> Hi! How can I help?</p>
+          </div>
+          <div class="ai-input">
+            <input id="aiInput" placeholder="Ask something...">
+            <button onclick="sendAI()">➤</button>
+          </div>
+        </div>
+
+        <script>
+          function toggleAI() {
+            const b = document.getElementById("aiBox");
+            b.style.display = b.style.display === "flex" ? "none" : "flex";
+          }
+          function sendAI() {
+            const i = document.getElementById("aiInput");
+            const b = document.getElementById("aiBody");
+            if (!i.value.trim()) return;
+            b.innerHTML += `<p><b>You:</b> ${i.value}</p>`;
+            setTimeout(() => b.innerHTML += `<p><b>AI:</b> We’ll assist you shortly 🚀</p>`, 600);
+            i.value = "";
+          }
+        </script>
+</body>
+</html>
